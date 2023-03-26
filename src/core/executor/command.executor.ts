@@ -2,7 +2,7 @@ import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 import { ISreamLogger } from '../hendlers/sream-logger.interface';
 import { ICommandExec } from './commans.types';
 
-export abstract class CommansEcecuter<Inpur> {
+export abstract class CommansExecuter<Inpur> {
   constructor(private logger: ISreamLogger) {}
   public async execute() {
     const input = await this.promt();

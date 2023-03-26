@@ -1,4 +1,4 @@
-export class FmpegBilder {
+export class FfmpegBuilder {
   private inputPath: string;
   private outputPath: string;
   private options: Map<string, string> = new Map();
@@ -17,7 +17,7 @@ export class FmpegBilder {
     return this;
   }
 
-  outpur(outputPath: string): string[] {
+  output(outputPath: string): string[] {
     if (!this.inputPath) {
       throw new Error('Nor pareametr input');
     }
@@ -33,4 +33,4 @@ export class FmpegBilder {
   }
 }
 
-//new FmpegBilder().input('').setVideoSize(1920, 1080).outpur('//');
+//new FfmpegBuilder().input('').setVideoSize(1920, 1080).outpur('//');
