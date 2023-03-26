@@ -1,17 +1,19 @@
-import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
-import { ISreamLogger } from '../hendlers/sream-logger.interface';
+import { ChildProcessWithoutNullStreams } from 'child_process';
+import { IStreamLogger } from '../hendlers/sream-logger.interface';
 import { ICommandExec } from './commans.types';
 
-export abstract class CommansExecuter<Inpur> {
-  constructor(private logger: ISreamLogger) {}
+export abstract class CommandExecutor<Input> {
+  constructor(private logger: IStreamLogger) {}
+
   public async execute() {
-    const input = await this.promt();
-    const comand = this.build(input);
-    const srtream = this.spawn(comand);
-    this.processStream(srtream, this.logger);
+    const input = await this.prompt();
+    const command = this.build(input);
+    const stream = this.spawn(command);
+    this.processStream(stream, this.logger);
   }
-  protected abstract promt(): Promise<Inpur>;
-  protected abstract build(inpur: Inpur): ICommandExec;
-  protected abstract spawn(comand: ICommandExec): ChildProcessWithoutNullStreams;
-  protected abstract processStream(stream: ChildProcessWithoutNullStreams, logger: ISreamLogger): void;
+
+  protected abstract prompt(): Promise<Input>;
+  protected abstract build(input: Input): ICommandExec;
+  protected abstract spawn(command: ICommandExec): ChildProcessWithoutNullStreams;
+  protected abstract processStream(stream: ChildProcessWithoutNullStreams, logger: IStreamLogger): void;
 }

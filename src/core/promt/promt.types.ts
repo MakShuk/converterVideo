@@ -1,1 +1,1 @@
-export type PromtType = "input" | "number" | "password";
+export type PromptType = 'input' | 'number' | 'password';

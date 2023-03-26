@@ -1,6 +1,5 @@
 export class FfmpegBuilder {
   private inputPath: string;
-  private outputPath: string;
   private options: Map<string, string> = new Map();
 
   constructor() {
@@ -8,7 +7,7 @@ export class FfmpegBuilder {
   }
 
   input(inputPath: string): this {
-    this.inputPath = this.outputPath;
+    this.inputPath = inputPath;
     return this;
   }
 
@@ -19,11 +18,9 @@ export class FfmpegBuilder {
 
   output(outputPath: string): string[] {
     if (!this.inputPath) {
-      throw new Error('Nor pareametr input');
+      throw new Error('Не задан параметр input');
     }
-
     const args: string[] = ['-i', this.inputPath];
-
     this.options.forEach((value, key) => {
       args.push(key);
       args.push(value);
@@ -32,5 +29,4 @@ export class FfmpegBuilder {
     return args;
   }
 }
-
 //new FfmpegBuilder().input('').setVideoSize(1920, 1080).outpur('//');
